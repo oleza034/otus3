@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 def chk_positive(number, value_role: (str | None)=None):
     """checks that number is a positive number and raises ValueError otherwise"""
-    if not (type(number) in (int, float) and number > 0):
+    if not ((isinstance(number, int) or isinstance(number, float)) and number > 0):
         # variables to form a correct error message
         value_role = value_role or 'Value'
         # 'us' -- means, 'radius' is not plural
