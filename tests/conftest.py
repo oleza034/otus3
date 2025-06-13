@@ -1,45 +1,33 @@
 from math import pi
-
 import pytest
 
 
-@pytest.fixture
-def api_rectangle(request):
-    def _wrapper(type_of_number: str):
-        if type_of_number == 'integer':
-            return 3, 5, 15
-        if type_of_number == 'float':
-            return 3.5, 5.5, 19.25
+shape_data = {
+    'rectangle': {
+        'integer': (3, 5, 15),
+        'float': (3.5, 5.5, 19.25)
+    },
+    'square': {
+        'integer': (3, 9),
+        'float': (3.5, 12.25),
+    },
+    'triangle': {
+        'integer': (3, 4, 5, 6.0),
+        'float': (6.0, 8.0, 10.0, 24.0)
+    },
+    'circle': {
+        'integer': (1, pi),
+        'float': (3.3, 34.21194399759284)
+    }
+}
 
-    yield _wrapper
-
-
-@pytest.fixture
-def api_square(request):
-    def _wrapper(type_of_number: str):
-        if type_of_number == 'integer':
-            return 3, 9
-        if type_of_number == 'float':
-            return 3.5, 12.25
-
-    yield _wrapper
-
-@pytest.fixture
-def api_triangle(request):
-    def _wrapper(type_of_number: str):
-        if type_of_number == 'integer':
-            return 3, 4, 5, 6.0
-        if type_of_number == 'float':
-            return 6.0, 8.0, 10.0, 24.0
-
-    yield _wrapper
 
 @pytest.fixture
-def api_circle(request):
-    def _wrapper(type_of_number: str):
-        if type_of_number == 'integer':
-            return 1, pi
-        if type_of_number == 'float':
-            return 3.3, 34.21194399759284
-
-    yield _wrapper
+def api_figure():
+    def _wrapper(shape: str, type_of_number: str):
+        if shape in shape_data:
+            if type_of_number in shape_data[shape]:
+                return shape_data[shape][type_of_number]
+            raise ValueError(f'Param {type_of_number=} is not supported for {shape=}')
+        raise ValueError(f'Shape {shape} is not defined.')
+    return _wrapper

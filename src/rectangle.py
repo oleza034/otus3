@@ -19,3 +19,6 @@ class Rectangle(Figure):
     def perimeter(self):
         """Calculates the sum of all sides of the figure."""
         return (self.side_a + self.side_b) * 2
+
+    def __str__(self):
+        return f'Rectangle with sides {self.side_a} and {self.side_b}'
