@@ -25,8 +25,8 @@ class Figure(ABC):
         """Calculates the perimeter of the figure."""
         pass
 
-    def add_area(self, other_figure):
+    def add_area(self, *other_figures):
         """Summarize areas of this and another figure."""
-        if not isinstance(other_figure, Figure):
-            raise ValueError("Should be a Figure")
-        return self.area + other_figure.area
+        if not all(isinstance(figure, Figure) for figure in other_figures):
+            raise ValueError("all params must be of Figure class")
+        return self.area + sum([f.area for f in other_figures])
