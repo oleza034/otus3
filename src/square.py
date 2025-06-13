@@ -7,3 +7,6 @@ class Square(Rectangle):
         """Creates a square figure with sides equal to side_a."""
         chk_positive(side_a, 'Square sides')
         super().__init__(side_a, side_a)
+
+    def __str__(self):
+        return f'Square with side {self.side_a}'

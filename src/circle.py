@@ -17,3 +17,6 @@ class Circle(Figure):
     def perimeter(self):
         """Calculates the perimeter of the circle."""
         return self.radius * 2 * pi
+
+    def __str__(self):
+        return f'Circle with radius={self.radius}'

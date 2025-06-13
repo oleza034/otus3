@@ -30,3 +30,6 @@ class Triangle(Figure):
         # then, validate triangle
         if not ((a + b > c) and (a + c > b) and (b + c > a)):
             raise ValueError(f'Cannot form a valid triangle with sides: {a}, {b}, {c}')
+
+    def __str__(self):
+        return f'Triangle with sides {self.side_a}, {self.side_b} and {self.side_c}'
